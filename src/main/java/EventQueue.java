@@ -1,5 +1,6 @@
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class EventQueue {
@@ -9,7 +10,7 @@ public class EventQueue {
     private volatile long dequeueCount;
 
     public EventQueue() {
-        this.queue = new ArrayDeque<>();
+        this.queue = new ConcurrentLinkedQueue<>();
     }
 
     /*

@@ -14,13 +14,10 @@ import java.util.concurrent.Executors;
 public class BrokerServer {
     private static final int PORT = 8888;
     private static final int FIXED_THREAD_POOL_SIZE = 10;
-    private static final int PRODUCER_THREADS = 1;
-    private static final int NUM_PRODUCERS = 1;
 
     private final EventQueue eventQueue;
     private final ExecutorService threadPool;
     private volatile boolean running = true;
-    private long startTime;
 
     public BrokerServer() {
         this.eventQueue = new EventQueue();
@@ -33,7 +30,7 @@ public class BrokerServer {
     }
 
     public void start() throws IOException {
-        startTime = System.currentTimeMillis();
+        System.currentTimeMillis();
         ServerSocket serverSocket = new ServerSocket(PORT);
         System.out.println("[Broker] Started on port " + PORT);
 
@@ -66,6 +63,12 @@ public class BrokerServer {
             while (running) {
                 int read = in.read(readBuf);
                 if (read == -1) break;//Connection closed
+                if (buffer.remaining() < read) {
+                    ByteBuffer expanded = ByteBuffer.allocate(buffer.capacity() * 2);
+                    buffer.flip();
+                    expanded.put(buffer);
+                    buffer = expanded;
+                }
                 buffer.put(readBuf, 0, read);
                 buffer.flip();
 
@@ -105,8 +108,10 @@ public class BrokerServer {
             long now = System.currentTimeMillis();
             if (now - lastPrintTime >= 1000) {
                 long dequeued = eventQueue.getDequeueCount();
-                long eventsPerSec = (dequeued - lastCount);
-                System.out.printf("[Consumer] Throughput: %,d events/sec, Queue size: %d\n", eventsPerSec, eventQueue.size());
+                long elapsed = now - lastPrintTime;
+
+                double throughput = ((dequeued - lastCount) * 1000.0) / elapsed;
+                System.out.printf("[Consumer] Throughput: %,.0f events/sec, Queue size: %d%n", throughput, eventQueue.size());
                 lastCount = dequeued;
                 lastPrintTime = now;
             }
