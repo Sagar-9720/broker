@@ -1,0 +1,8 @@
+experiment,throughput_events_sec,queue_peak,gc_pause_ms,notes
+before_lock_removal,2970672,8829959,10.8,queue exploded under load
+before_lock_removal,2600522,391030,6.7,unstable throughput
+before_lock_removal,1841920,3299874,9.3,consumer lagging badly
+after_lock_removal,6533240,239,2.9,stable throughput
+after_lock_removal,7203088,151,1.1,queue equilibrium achieved
+after_lock_removal,7260302,537,2.1,smooth throughput
+after_lock_removal,7457818,147,1.9,best observed throughput

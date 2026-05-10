@@ -1,0 +1,83 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :compileJmhJava UP-TO-DATE
+> Task :processJmhResources NO-SOURCE
+> Task :jmhClasses UP-TO-DATE
+
+> Task :jmhRunBytecodeGenerator
+Processing 1 classes from /Users/sagargupta/Desktop/Broker/broker/build/classes/java/jmh with "reflection" generator
+Writing out Java source to /Users/sagargupta/Desktop/Broker/broker/build/jmh-generated-sources and resources to /Users/sagargupta/Desktop/Broker/broker/build/jmh-generated-resources
+Processing 0 classes from /Users/sagargupta/Desktop/Broker/broker/build/classes/java/test with "reflection" generator
+Writing out Java source to /Users/sagargupta/Desktop/Broker/broker/build/jmh-generated-sources and resources to /Users/sagargupta/Desktop/Broker/broker/build/jmh-generated-resources
+
+> Task :jmhCompileGeneratedClasses
+> Task :jmhJar
+
+> Task :jmh
+# JMH version: 1.36
+# VM version: JDK 24.0.1, OpenJDK 64-Bit Server VM, 24.0.1+9-30
+# VM invoker: /Users/sagargupta/Library/Java/JavaVirtualMachines/openjdk-24.0.1/Contents/Home/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/Users/sagargupta/Desktop/Broker/broker/build/tmp/jmh -Duser.country=US -Duser.language=en -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 5 s each
+# Measurement: 3 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: broker.BrokerBenchmark.singleProducerSingleConsumer
+
+# Run progress: 0.00% complete, ETA 00:01:20
+# Fork: 1 of 1
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/sagargupta/.gradle/caches/modules-2/files-2.1/org.openjdk.jmh/jmh-core/1.36/5a69117788322630fc5f228bc804771335d41b1b/jmh-core-1.36.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 290.280 ops/s
+# Warmup Iteration   2: 307.918 ops/s
+Iteration   1: 280.050 ops/s
+Iteration   2: 240.525 ops/s
+Iteration   3: 218.522 ops/s
+
+
+Result "broker.BrokerBenchmark.singleProducerSingleConsumer":
+  246.365 ±(99.9%) 568.782 ops/s [Average]
+  (min, avg, max) = (218.522, 246.365, 280.050), stdev = 31.177
+  CI (99.9%): [≈ 0, 815.148] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 24.0.1, OpenJDK 64-Bit Server VM, 24.0.1+9-30
+# VM invoker: /Users/sagargupta/Library/Java/JavaVirtualMachines/openjdk-24.0.1/Contents/Home/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/Users/sagargupta/Desktop/Broker/broker/build/tmp/jmh -Duser.country=US -Duser.language=en -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 5 s each
+# Measurement: 3 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Sampling time
+# Benchmark: broker.BrokerBenchmark.enqueueLatency
+
+# Run progress: 50.00% complete, ETA 00:00:40
+# Fork: 1 of 1
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/sagargupta/.gradle/caches/modules-2/files-2.1/org.openjdk.jmh/jmh-core/1.36/5a69117788322630fc5f228bc804771335d41b1b/jmh-core-1.36.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 0.437 ±(99.9%) 1.151 us/op
+# Warmup Iteration   2: 0.110 ±(99.9%) 0.011 us/op
+Iteration   1: 179.372 ±(99.9%) 297.620 us/op
+                 enqueueLatency·p0.00:   ≈ 0 us/op
+                 enqueueLatency·p0.50:   0.083 us/op
+                 enqueueLatency·p0.90:   0.084 us/op
+                 enqueueLatency·p0.95:   0.167 us/op
+                 enqueueLatency·p0.99:   0.459 us/op
+                 enqueueLatency·p0.999:  31.002 us/op
+                 enqueueLatency·p0.9999: 425.734 us/op
+                 enqueueLatency·p1.00:   4051697.664 us/op
+
+Iteration   2: 
+Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "broker.BrokerBenchmark.enqueueLatency-jmh-worker-1"

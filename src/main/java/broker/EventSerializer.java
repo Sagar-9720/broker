@@ -1,6 +1,9 @@
+package broker;
+
 import java.nio.ByteBuffer;
 
 public class EventSerializer {
+    private static final int MAX_FRAME_SIZE = 1024;
     private static final int EVENT_SIZE = Long.BYTES +      // timestamp
             Long.BYTES +      // orderId
             Double.BYTES +    // price
@@ -53,6 +56,9 @@ public class EventSerializer {
         if (buffer.remaining() < Integer.BYTES) return null;
         buffer.mark();
         int size = buffer.getInt();
+        if (size <= 0 || size > MAX_FRAME_SIZE) {
+            throw new IllegalArgumentException("Invalid frame size: " + size);
+        }
 
         if (buffer.remaining() < size) {
             buffer.reset();
@@ -64,3 +70,4 @@ public class EventSerializer {
         return message;
     }
 }
+

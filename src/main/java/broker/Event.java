@@ -1,3 +1,5 @@
+package broker;
+
 import java.util.Objects;
 
 public class Event {
@@ -37,3 +39,4 @@ public class Event {
 
 
 }
+

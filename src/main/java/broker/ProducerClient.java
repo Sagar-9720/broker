@@ -1,6 +1,7 @@
 /*
  * Test Producer - connects to broker and sends events
  */
+package broker;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -33,11 +34,10 @@ public class ProducerClient {
         long eventsSent = 0;
         long startTime = System.currentTimeMillis();
         System.out.println("[Producer] Connected to broker at " + host + ":" + port);
-
         try {
-            while (running) {
+            while(true) {
                 //Create Event
-                Event event = new Event(System.nanoTime(), random.nextLong() * 1000000L, 1000.0 + random.nextDouble() * 1000.0, random.nextInt(1000) + 1, (byte) 0, //BUY Order
+                Event event = new Event(System.nanoTime(), Math.abs(random.nextLong()), 1000.0 + random.nextDouble() * 1000.0, random.nextInt(1000) + 1, (byte) 0, //BUY Order
                         (byte) (random.nextInt(2)));
 
                 //Serialize and send
@@ -51,7 +51,7 @@ public class ProducerClient {
                 }
 
                 //Log stats
-                if (eventsSent % 100000 == 0) {
+                if (eventsSent % 10000 == 0) {
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long rate = (eventsSent * 1000) / elapsedTime;
                     System.out.printf("[Producer] Sent %,d events @ %,d/sec\n", eventsSent, rate);
@@ -65,3 +65,4 @@ public class ProducerClient {
 
     }
 }
+
