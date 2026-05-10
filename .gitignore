@@ -1,0 +1,38 @@
+# Java build and IDE files
+**/build/
+**/.gradle/
+**/out/
+**/.idea/
+**/.vscode/
+**/.classpath
+**/.project
+**/.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Generated JARs
+*.jar
+*.war
+*.ear
+
+# Coverage reports
+**/coverage/
+**/jacoco/
+**/jacocoHtml/
+
+# Misc
+*.iml
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
