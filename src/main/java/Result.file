@@ -1,0 +1,20 @@
+WEEK_1:
+
+[Producer] Connected to broker at localhost:8888
+[Producer] Sent 100,000 events @ 2,500,000/sec
+[Producer] Sent 200,000 events @ 3,278,688/sec
+.
+.
+
+[Producer] Sent 240,000,000 events @ 4,440,497/sec
+[Producer] Sent 240,100,000 events @ 4,440,457/sec
+
+[Broker] Started on port 8888
+[Consumer] Throughput: 1 events/sec, Queue size: 14
+[Consumer] Throughput: 4,893,600 events/sec, Queue size: 2119
+.
+.
+[Consumer] Throughput: 4,514,235 events/sec, Queue size: 917
+[Consumer] Throughput: 4,236,463 events/sec, Queue size: 148
+
+//some time queue size reaches to 84833,134638 ..
